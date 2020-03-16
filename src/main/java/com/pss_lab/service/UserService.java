@@ -24,7 +24,6 @@ public class UserService {
 	}
 	
 	@RequestMapping("/users")
-	@JsonIgnoreProperties("delegation")
 	public List<User> getAllUsers()
 	{
 		return userControler.AllUser();
@@ -43,13 +42,13 @@ public class UserService {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/users/{userId}")
-	void changePassword(long userId, String newPassword)
+	void changePassword(@PathVariable long userId,@RequestBody String newPassword)
 	{
 		userControler.UpdatePassword(userId, newPassword);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/users/{userId}")
-	boolean deleteUserById(long userId)
+	boolean deleteUserById(@PathVariable long userId)
 	{
 		return userControler.DeleteUser(userId);
 	}

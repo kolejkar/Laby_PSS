@@ -40,6 +40,7 @@ public class UserControler {
 
 	public void UpdatePassword(long id, String password) {
 		userRepository.getOne(id).setPassword(password);
+		userRepository.flush();
 	}
 	
 	public boolean DeleteUser(long id)

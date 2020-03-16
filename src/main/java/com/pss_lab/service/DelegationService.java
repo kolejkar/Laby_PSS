@@ -24,14 +24,13 @@ public class DelegationService {
 	}
 	
 	@RequestMapping("/delegations")
-	@JsonIgnoreProperties("users")
 	public List<Delegation> getAllDelegation()
 	{
 		return delegationControler.AllDelegation();
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/delegations")
-	void addDelegation(long userId, Delegation delegation)
+	@RequestMapping(method=RequestMethod.POST, value="/delegations/{userId}")
+	void addDelegation(@PathVariable long userId,@RequestBody Delegation delegation)
 	{
 		delegationControler.regDelegation(userId, delegation);
 	}
@@ -52,13 +51,13 @@ public class DelegationService {
 	}*/
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/delegations/{DelegationId}")
-	void changeDelegation(long DelegationId, Delegation delegation)
+	void changeDelegation(@PathVariable long DelegationId,@RequestBody Delegation delegation)
 	{
 		delegationControler.UpdateDelegation(DelegationId, delegation);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/delegations/{DelegationId}")
-	boolean removeDelegation(long userId, long delegationId)
+	@RequestMapping(method=RequestMethod.DELETE, value="/delegations/{userId}")
+	boolean removeDelegation(@PathVariable long userId,@RequestBody long delegationId)
 	{
 		return delegationControler.DeleteDelegation(userId, delegationId);
 	}

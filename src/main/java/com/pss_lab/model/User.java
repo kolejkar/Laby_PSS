@@ -3,6 +3,8 @@ package com.pss_lab.model;
 import java.io.Serializable;
 import javax.persistence. *;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 import java.sql.*;
@@ -27,7 +29,8 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
  
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonIgnoreProperties(value = {"user"})
     private Set<Delegation> delegations = new HashSet<>();
     
     @Column(nullable = false)

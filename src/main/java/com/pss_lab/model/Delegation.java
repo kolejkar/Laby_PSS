@@ -3,6 +3,8 @@ package com.pss_lab.model;
 import java.io.Serializable;
 import javax.persistence. *;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 import java.sql.*;
@@ -23,8 +25,9 @@ public class Delegation {
 	@Id
 	private Long delegationId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonIgnoreProperties(value = {"delegations"})
 	private User user;
 	
 	String description; // - opcjonalne
