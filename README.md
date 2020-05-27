@@ -1,1 +1,1 @@
-# PSS_Kulesza_Durol
+# Laboratoriom PSS Pomarzyński
